@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Shared/">
+    <Project Path="Shared/CineQueue.Shared.csproj" />
+  </Folder>
+  <Folder Name="/WebAPI/">
+    <Project Path="WebAPI/CineQueue.Api.csproj" />
+  </Folder>
+  <Folder Name="/Worker/">
+    <Project Path="Worker/CineQueue.Worker.csproj" />
+  </Folder>
+</Solution>
