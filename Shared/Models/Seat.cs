@@ -12,8 +12,8 @@ namespace Shared.Models
         public int Number { get; set; }
         public SeatStatus Status { get; set; }
 
-        // Foreign key to the Movie entity
-        public Guid MovieId { get; set; }
-        public Movie? Movie { get; set; }
+        // Foreign key to the ShowTime entity
+        public Guid ShowTimeId { get; set; }
+        public ShowTime? ShowTime { get; set; }
     }
 }

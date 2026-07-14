@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Shared.Database;
@@ -11,9 +12,11 @@ using Shared.Database;
 namespace CineQueue.Shared.Migrations
 {
     [DbContext(typeof(CineQueueDbContext))]
-    partial class CineQueueDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260714101216_AddHalls")]
+    partial class AddHalls
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
