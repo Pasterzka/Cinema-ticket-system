@@ -35,12 +35,13 @@ services:
       dockerfile: WebAPI/Dockerfile
     container_name: cinequeue-api
     environment:
+      - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=CineQueueDb;Username=admin;Password=admin
       - RabbitMQ__HostName=rabbitmq
       - RabbitMQ__UserName=admin
       - RabbitMQ__Password=admin
     ports:
-      - "5050:80"
+      - "5050:8080"
     depends_on:
       - postgres
       - rabbitmq
