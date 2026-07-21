@@ -1,4 +1,6 @@
 using MassTransit;
+using Microsoft.EntityFrameworkCore;
+using Shared.Database;
 using Shared.Messages;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,14 @@ builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<CineQueueDbContext>(options =>
+{
+    var connectionString = builder.Configuration["ConnectionStrings:DefaultConnection"] 
+        ?? "Host=postgres;Port=5432;Database=CineQueueDb;Username=admin;Password=admin";
+        
+    options.UseNpgsql(connectionString);
+});
 
 builder.Services.AddMassTransit(x =>
 {
@@ -39,18 +49,5 @@ if (app.Environment.IsDevelopment())
 
 //app.UseHttpsRedirection();
 app.MapControllers();
-
-
-app.MapPost("/api/reservations", async (ReserveSeatCommand command, IPublishEndpoint publishEndpoint) =>
-{
-    await publishEndpoint.Publish(command);
-
-    return Results.Accepted(value: new
-    {
-        message = "Reservation request received.",
-        command = command
-    });
-})
-.WithName("CreateReservation");
 
 app.Run();
